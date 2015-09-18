@@ -1,6 +1,9 @@
 # VMSRobot3
 Third generation robot for Valley Montessori Middle School.
 
+# Parts List and Assembly Instructions
+[VMSRobot3 Assembly Instructions](https://docs.google.com/document/d/1aMgGn_GMRXm6yo6lkSCQl6jxoEXO4kdBOoNrrVF_mG0/edit?usp=sharing)
+
 # License
 All files copyright 2015 by Mark Rose
 
