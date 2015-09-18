@@ -9,6 +9,9 @@ The software in this repository is designed to be an Arduino library.
 * Clone this repository into that directory. (Will normally be a subdirectory called *VMSRobot3*, but you can use a different name, if you prefer.)
 * Restart the Arduino IDE. Examples from this library should be available in the File > Examples > VMSRobot3 menu.
 
+## Installing from ZIP
+There are no releases yet. For now, use the *Download ZIP* button and unpack that ZIP file into the Arduino *libraries/* directory. That will create a subdirectory called *VMSRobot3-master*. Rename that directory to *VMSRobot3*.
+
 # The Robot Hardware
 [VMSRobot3 Parts List and Assembly Instructions](https://docs.google.com/document/d/1aMgGn_GMRXm6yo6lkSCQl6jxoEXO4kdBOoNrrVF_mG0/edit?usp=sharing)
 
