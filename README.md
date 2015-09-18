@@ -1,7 +1,7 @@
 # VMSRobot3
 Software library for the third generation robot for the Valley Montessori Middle School robotics elective.
 
-<img src="https://drive.google.com/file/d/0B1_iFljgq8uCMkFGVE1iVmJjOGM/view?usp=sharing" alt="Image of robot" />
+<img src="robot-image.jpg" alt="Image of robot" width="320" height="240" />
 
 # Software Installation
 The software in this repository is designed to be an Arduino library.
