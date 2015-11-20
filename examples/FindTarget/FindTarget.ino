@@ -19,7 +19,7 @@ int deltaAngle = DELTA_ANGLE;
 
 // Start the serial port and attach to the servo control pin.
 void setup() {
-  Serial.begin(38400);
+  Serial.begin(115200);
   irServo.attach(9);
   
   delay(1000);

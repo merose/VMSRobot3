@@ -18,7 +18,7 @@ const int M2_SPEED = 6;
 const int M2_DIRECTION = 7;
 
 void setup() {
-  Serial.begin(38400);
+  Serial.begin(115200);
 
   pinMode(M1_DIRECTION, OUTPUT);
   pinMode(M2_DIRECTION, OUTPUT);

@@ -17,7 +17,7 @@ const int M2_DIRECTION = 7;
 Servo irServo;
 
 void setup() {
-  Serial.begin(38400);
+  Serial.begin(115200);
   irServo.attach(SERVO_PIN);
   setServoAngle(0);
 
