@@ -55,4 +55,7 @@ void setServoAngle(int angle);
 // value. This helps eliminates random errors.
 int getIRValue();
 
+// Converts an IR sensor value to a distance in meters.
+float valueToDistance(int value);
+
 #endif //VMSROBOT3_H

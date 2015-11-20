@@ -70,12 +70,25 @@ void setServoAngle(int angle) {
   irServo.write(90 + angle);
 }
 
-// Gets the IR sensor value, reading the sensor twice and returning the smaller
-// value. This helps eliminates random errors.
+// Gets the IR sensor value, reading the sensor twice and returning the
+// smaller value. This helps eliminates random errors.
 int getIRValue() {
   int v1 = analogRead(IR_PIN);
   delay(50);
   int v2 = analogRead(IR_PIN);
 
   return min(v1, v2);
+}
+
+// Linear fit of voltage vs. 1/distance based on Sharp data sheet
+// for 10-80cm sensor. The 5/1024 factor is to convert from analog
+// input value to voltage.
+//     In cm, fitted 1/d = m*V + b: m=0.05, b=-0.14
+const float M = 0.05 * 5.0 / 1024.0;
+const float B = -0.014;
+
+// Converts an IR sensor value to a distance in meters.
+float valueToDistance(int value) {
+  float invDistance = max(M*value + B, 1E-6);
+  return min(.8, .01/invDistance);
 }
