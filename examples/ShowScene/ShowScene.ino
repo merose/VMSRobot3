@@ -1,9 +1,10 @@
-// ShowScene - When requested, analyze distances over a range of angles and
-//     show a graphic display of the scene.
+// ShowScene - When requested, analyze distances over a range of angles
+//     and show a graphic display of the scene.
 
 // An example for the VMS Robotics elective.
 
 #include <Servo.h>
+#include <VMSRobot3.h>
 
 // The maximum angle off of center to move to.
 const int MAX_ANGLE = 60;
@@ -11,10 +12,6 @@ const int MAX_ANGLE = 60;
 // How much to turn the servo in one step.
 const int DELTA_ANGLE = 5;
 
-// What value from the infrared sensor indicates a target present.
-const int IR_THRESHOLD_VALUE = 100;
-
-Servo irServo;
 int curAngle = 0;
 int deltaAngle = DELTA_ANGLE;
 
@@ -25,24 +22,30 @@ const int Y_SCALE = 50.0;
 
 int minDistance[2*MAX_X + 1];
 
+
 // Start the serial port and attach to the servo control pin.
 void setup() {
-  Serial.begin(38400);
-  irServo.attach(9);
-  
-  delay(1000);
-  setServoAngle(0);
+  Serial.begin(115200);
+  initRobot();
+
   delay(1000);
 }
 
-// Forever, turn the servo and try to find a target. If there is no target,
-//     adjust the servo angle. If th angle is too big or too small,
-//     change the panning direction.
+
+// Forever, wait for the switch to be pressed and then scan the scene.
+// Convert readings into a picture of what the robot sees and display
+// it on the output.
+
 void loop() {
-  waitForSwitch1();
+  while (readSwitch() != 1) {
+    // Do nothing.
+  }
+  
   showScene();
 }
 
+
+// Show the scene of what the robot sees.
 void showScene() {
   setServoAngle(MAX_ANGLE);
   delay(1000);
@@ -56,7 +59,7 @@ void showScene() {
     delay(50);
 
     int value = getIRValue();
-    float distance = getDistance(value);
+    float distance = valueToDistance(value);
 
     int x = round(distance * sin(-curAngle/180.0*PI) * X_SCALE);
     int y = round(distance * cos(curAngle/180.0*PI) * Y_SCALE);
@@ -105,43 +108,13 @@ void showScene() {
   Serial.println("+");
 }
 
-// Gets the IR sensor value, reading the sensor three times, and returning
-// the median of the three values. This median filter method eliminates
-// stray values that sometimes result.
-int getIRValue() {
-  int v1 = analogRead(3);
-  delay(20);
-  int v2 = analogRead(3);
-  delay(20);
-  int v3 = analogRead(3);
-  
-  if (v2 <= v1 && v1 <= v3) {
-    return v1;
-  } else if (v3 <= v1 && v1 <= v3) {
-    return v1;
-  } else if (v1 <= v2 && v2 <= v3) {
-    return v2;
-  } else if (v3 <= v2 && v2 <= v1) {
-    return v2;
-  } else {
-    return v3;
-  }
-}
+// Linear fit of voltage vs. 1/distance based on Sharp data sheet
+// for 10-80cm sensor. The 5/1024 factor is to convert from analog
+// input value to voltage. (Fitted 1/d = m*V + b: m=0.05, b=-0.14)
+const float M = 0.05 * 5.0 / 1024.0;
+const float B = -0.014;
 
-// Converts an IR analog value to a distance in meters. This is an approximate
-// algorithm based on examining several Sharp sensors.
-float getDistance(int irValue) {
-  return 22.0 / irValue;
-}
-
-// Sets the servo angle, as an angle from center.
-void setServoAngle(int angle) {
-  irServo.write(90 + angle);
-}
-
-// Waits for switch S1 to be depressed.
-void waitForSwitch1() {
-  while (analogRead(0) > 75) {
-    // do nothing
-  }
+float valueToDistance(int value) {
+  float invDistance = max(M*value + B, 1E-6);
+  return min(.8, .01/invDistance);
 }

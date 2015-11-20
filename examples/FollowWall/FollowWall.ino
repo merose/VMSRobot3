@@ -1,24 +1,13 @@
-// FollowWall - Avoids obstacles based on the IR sensor value, panning it back
-//     and forth to detect obstacles, and tries to follow walls on its right.
-//     This is an extension of the Wander example.
+// FollowWall - Avoids obstacles based on the IR sensor value, panning
+//     it back and forth to detect obstacles, and tries to follow walls
+//     on its right. This is an extension of the Wander example.
 
 // An example for the VMS Robotics elective.
 
 #include <Servo.h>
+#include <VMSRobot3.h>
 
-// The pins for motor control on the Romeo v2.
-const int M1_DIRECTION = 4;
-const int M1_SPEED = 5;
-const int M2_SPEED = 6;
-const int M2_DIRECTION = 7;
-
-// The analog pin for IR sensor.
-const int IR_PIN = 3;
-
-// The pin for a servo for the IR sensor.
-const int IR_SERVO_PIN = 9;
-
-// The IR sensor value indicating an imminent object.
+// The distance for a dangerous object.
 const int DANGER_THRESHOLD = 90;
 
 Servo irServo;
@@ -31,21 +20,14 @@ const int IR_ANGLE_COUNT = sizeof(IR_ANGLES) / sizeof(IR_ANGLES[0]);
 int curAngleIndex = 0;
 int angleDirection = 1;
 
-// Set up the serial port and wait for it to initialize, and center the servo.
+// Initialize the robot and wait for switch S1 to be pressed.
 void setup() {
-  Serial.begin(38400);
+  Serial.begin(115200);
+  initRobot();
 
-  irServo.attach(IR_SERVO_PIN);
-
-  pinMode(M1_DIRECTION, OUTPUT);
-  pinMode(M1_SPEED, OUTPUT);
-  pinMode(M2_DIRECTION, OUTPUT);
-  pinMode(M2_SPEED, OUTPUT);
-  
-  delay(1000);
-  setServoAngle(IR_ANGLES[curAngleIndex]);
-  delay(2000);
-  waitForSwitch1();
+  while (readSwitch() != 1) {
+    // Do nothing.
+  }
 }
 
 // Forever, if there is an obstacle ahead, stop and turn. Otherwise drive

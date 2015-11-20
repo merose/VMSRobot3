@@ -14,11 +14,8 @@
 // 4   fast
 // '   reverse direction (stop first, to avoid straining the motors)
 
-// The pins for motor control on the Romeo v2.
-const int M1_DIRECTION = 4;
-const int M1_SPEED = 5;
-const int M2_SPEED = 6;
-const int M2_DIRECTION = 7;
+#include <Servo.h>
+#include <VMSRobot3.h>
 
 // The current direction and relative speed.
 float direction = 1.0;
@@ -29,12 +26,8 @@ enum {STOPPED, STRAIGHT, TURN_LEFT, TURN_RIGHT} driveMode = STOPPED;
 
 // Set up the serial communication, and set the pin modes for the motors.
 void setup() {
-  Serial.begin(38400);
-
-  pinMode(M1_DIRECTION, OUTPUT);
-  pinMode(M1_SPEED, OUTPUT);
-  pinMode(M2_DIRECTION, OUTPUT);
-  pinMode(M2_SPEED, OUTPUT);
+  Serial.begin(115200);
+  initRobot();
 }
 
 // Forever, read a command, if available, change speeds if commanded,
@@ -100,13 +93,4 @@ int readCommand() {
   }
   
   return c;
-}
-
-// Sets the speed of the two motors. The speed of each motor is specified
-// as an integer from -255 (full reverse) to +255 (full forward).
-void setSpeed(int leftSpeed, int rightSpeed) {
-  digitalWrite(M1_DIRECTION, (leftSpeed >= 0 ? HIGH : LOW));
-  analogWrite(M1_SPEED, abs(leftSpeed));
-  digitalWrite(M2_DIRECTION, (rightSpeed >= 0 ? HIGH : LOW));
-  analogWrite(M2_SPEED, abs(rightSpeed));
 }
