@@ -3,6 +3,7 @@
 // An example for the VMS Robotics elective.
 
 #include <Servo.h>
+#include <VMSRobot3.h>
 
 // The maximum angle off of center to move to.
 const int MAX_ANGLE = 60;
@@ -11,9 +12,8 @@ const int MAX_ANGLE = 60;
 const int DELTA_ANGLE = 5;
 
 // What value from the infrared sensor indicates a target present.
-const int IR_THRESHOLD_VALUE = 100;
+const int IR_THRESHOLD_VALUE = 250;
 
-Servo irServo;
 int curAngle = 0;
 int deltaAngle = DELTA_ANGLE;
 
@@ -28,13 +28,18 @@ void setup() {
 }
 
 // Forever, turn the servo and try to find a target. If there is no target,
-//     adjust the servo angle. If th angle is too big or too small,
+//     adjust the servo angle. If the angle is too big or too small,
 //     change the panning direction.
 void loop() {
   setServoAngle(curAngle);
-  delay(25);
   
-  int value = analogRead(3);
+  delay(75); // Wait for a good IR value.
+  int value = analogRead(IR_PIN);
+  if (value >= IR_THRESHOLD_VALUE) {
+    delay(50);
+    value = min(value, analogRead(IR_PIN));
+  }
+
   if (value < IR_THRESHOLD_VALUE) {
     int newAngle = curAngle + deltaAngle;
     if (newAngle > MAX_ANGLE) {
@@ -47,9 +52,4 @@ void loop() {
     
     curAngle = newAngle;
   }
-}
-
-// Sets the servo angle, as an angle from center.
-void setServoAngle(int angle) {
-  irServo.write(90 + angle);
 }

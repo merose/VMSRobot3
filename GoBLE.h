@@ -74,7 +74,7 @@ typedef struct
   byte  digitalButtonNumber;
   
   byte  joystickPosition;
-  byte	buttonPayload[MAXBUTTONNUMBER];
+  byte	buttonPayload[MAXBUTTONID];
   byte	joystickPayload[4];
   byte  checkSum;
 

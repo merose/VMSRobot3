@@ -7,8 +7,8 @@
 #include <VMSRobot3.h>
 
 // The angles we should sense, and the danger thresholds for each angle.
-const int IR_ANGLES[] = {60, 45, 30, 15, 0, -15, -30, -45, -60};
-const int IR_THRESHOLD[] = {350, 350, 350, 350, 350, 350, 350, 350, 350};
+const int IR_ANGLES[] = {60, 15, -15, -60};
+const int IR_THRESHOLD[] = {400, 400, 400, 400};
 const int IR_ANGLE_COUNT = sizeof(IR_ANGLES) / sizeof(IR_ANGLES[0]);
 
 int curAngleIndex = 0;
@@ -29,6 +29,7 @@ void setup() {
 // Forever, if there is an obstacle ahead, stop and turn. Otherwise drive
 //     forward and move the servo to a new angle.
 void loop() {
+  delay(100); // Wait for a good IR value.
   int value = analogRead(IR_PIN);
   if (value >= IR_THRESHOLD[curAngleIndex]) {
     delay(50);
@@ -55,7 +56,7 @@ void loop() {
   }
 
   setServoAngle(IR_ANGLES[curAngleIndex]);
-  delay(50);
+  delay(60);
 }
 
 // Stop, then pivot left for a while, and stop again.
