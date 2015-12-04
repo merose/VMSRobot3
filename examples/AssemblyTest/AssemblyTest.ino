@@ -1,3 +1,5 @@
+// AssemblyTest - Tests the various parts of the VMS Robot, version 3.
+
 #include <Servo.h>
 
 const int ONBOARD_SWITCH_PIN = A7;
@@ -16,6 +18,8 @@ const int M2_DIRECTION = 7;
 
 Servo irServo;
 
+// Set up the motor controls for output, center the servo, and wait
+// for a switch press. The five switches run 5 different tests.
 void setup() {
   Serial.begin(115200);
   irServo.attach(SERVO_PIN);
@@ -87,11 +91,14 @@ int readSwitch() {
   }
 }
 
+// Test the Romeo board by blinking the onboard LED once per second.
 void blinkLoop() {
   digitalWrite(ONBOARD_LED_PIN, !digitalRead(ONBOARD_LED_PIN));
   delay(500);
 }
 
+// Test the motors by driving forward and back with the left motor,
+// then forward and back with the right motor.
 void motorLoop() {
   setSpeed(128, 0);
   delay(2000);
@@ -115,6 +122,7 @@ const int NUM_ANGLES = sizeof(ANGLES) / sizeof(ANGLES[0]);
 
 int curAngle = 0;
 
+// Test the servo by moving the servo repeatedly through the angles above.
 void servoLoop() {
   setServoAngle(ANGLES[curAngle]);
   curAngle = (curAngle + 1) % NUM_ANGLES;
@@ -123,11 +131,15 @@ void servoLoop() {
 
 const int IR_THRESHOLD = 375;
 
+// Test the distance sensor by lighting the onboard LED if the analog
+// value is greater than a threshold.
 void distanceLoop() {
   digitalWrite(ONBOARD_LED_PIN, analogRead(IR_PIN) >= IR_THRESHOLD);
   delay(50);
 }
 
+// Test the track sensors by turning the servo to the left or right,
+// if one of the track sensors detects an edge.
 void trackSensorLoop() {
   int foundLeftEdge = !digitalRead(LEFT_TRACK_SENSOR_PIN);
   int foundRightEdge = !digitalRead(RIGHT_TRACK_SENSOR_PIN);
@@ -152,7 +164,8 @@ void setSpeed(int leftSpeed, int rightSpeed) {
   analogWrite(M2_SPEED, abs(rightSpeed));
 }
 
-// Sets the servo angle, as an angle from center.
+// Sets the servo angle, as an angle from center, where positive angles
+// are to the left (counter-clockwise).
 void setServoAngle(int angle) {
   irServo.write(90 + angle);
 }
