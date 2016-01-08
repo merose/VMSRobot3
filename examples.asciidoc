@@ -1,0 +1,39 @@
+= Example Programs
+
+Here is a list of all the example programs. Most require S1 to be pressed before doing anything.
+
+|===
+| Name | Purpose
+
+| AssemblyTest | Tests the robot assembly, wiring, and parts, as detailed in the assembly instructions
+| DriveForward | Drives forward 5 seconds and stops
+| FollowEdge | Tries to drive around the edge of a table
+| AvoidDanger | Tries to avoid hitting anything and running off the edge of the table.
+| Wander | Tries to avoid hitting obstacles by panning the IR sensor back and forth while driving around
+| FollowWall | Tries to follow a wall on the right
+| FindTarget | Pans the IR sensor left and right until a target is found
+| ShowDistance | Shows the IR distance sensor values
+| ShowScene | Shows the scene in front of the robot whenever S1 is pressed
+| FollowObject | Drives around trying to find an object with the IR sensor; follows the left edge of the object
+| PushObject | Tries to find an object and push it off the table, while not falling off the table
+| KeyboardControl | Allows remote control while tethered to a laptop by using the keyboard to control the motors
+| RemoteControl | Allows remote control from an iPhone or iPad
+|===
+
+== Challenges
+
+See if you can modify these example programs to solve the challenges given.
+
+[cols="1,3a"]
+|===
+| Name | Challenges
+
+| FollowWall | Make sure the robot does not turn so sharply that it gets hung up as it rounds a corner.
+| Wander | Can you make the robot wander faster without running into anything? Or, can you make it go slower and make it better able to avoid narrow things like table legs?
+| FollowObject | Can you make it smarter about following? For example, continuing to the left if it loses an object while turning left, instead of always trying to the right?
+| PushObject | Can you keep the robot from getting stuck in a corner? How about keeping it from getting stuck without seeing an object, endlessly circling?
+|===
+
+== Remote Control
+
+The RemoteControl example requires the use of the GoBLE app which can be installed for free on an iPhone or iPad from the Apple Store. You have to press the search button to find your robot, then select it to connect. After that you can use the virtual joystick to drive the robot around.
