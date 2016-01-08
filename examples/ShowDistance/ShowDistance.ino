@@ -14,8 +14,8 @@ void setup() {
 // Forever, read the IR sensor value and display it to the serial port.
 void loop() {
   Serial.print("Value=");
-  Serial.print(getIRValue());
+  Serial.print(analogRead(IR_PIN));
   Serial.println();
 
-  delay(250);
+  delay(100);
 }

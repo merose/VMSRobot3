@@ -12,7 +12,7 @@ const int MAX_ANGLE = 60;
 const int DELTA_ANGLE = 5;
 
 // What value from the infrared sensor indicates a target present.
-const int IR_THRESHOLD_VALUE = 250;
+const int IR_THRESHOLD_VALUE = 400;
 
 int curAngle = 0;
 int deltaAngle = DELTA_ANGLE;
@@ -33,7 +33,7 @@ void setup() {
 void loop() {
   setServoAngle(curAngle);
   
-  delay(75); // Wait for a good IR value.
+  delay(50); // Wait for a good IR value.
   int value = analogRead(IR_PIN);
   if (value >= IR_THRESHOLD_VALUE) {
     delay(50);

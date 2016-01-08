@@ -65,6 +65,11 @@ void setSpeed(int leftSpeed, int rightSpeed) {
   analogWrite(M2_SPEED, abs(rightSpeed));
 }
 
+// Gets the current servo angle, as an angle from center.
+int getServoAngle() {
+  return irServo.read() - 90;
+}
+
 // Sets the servo angle, as an angle from center.
 void setServoAngle(int angle) {
   irServo.write(90 + angle);

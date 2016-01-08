@@ -48,6 +48,9 @@ int readSwitch();
 // Sets the left and right motor speeds.
 void setSpeed(int leftSpeed, int rightSpeed);
 
+// Gets the current servo angle, as an angle from center.
+int getServoAngle();
+
 // Sets the servo angle, as an angle from center.
 void setServoAngle(int angle);
 
