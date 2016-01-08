@@ -1,27 +1,50 @@
-# VMSRobot3
+= VMSRobot3
 Software library for the third generation robot for the Valley Montessori Middle School robotics elective.
 
-<img src="robot-image.jpg" alt="Image of robot" width="320" height="240" />
+image:robot-image.jpg[Image of the robot, 320, 240]
 
-# Software Installation
+== Software Installation
 The software in this repository is designed to be an Arduino library.
 
-## Installing Using Git
-1. Go to the Arduino *libraries/* directory.
-1. Clone this repository into that directory. (Will normally be a subdirectory called *VMSRobot3*, but you can use a different name, if you prefer.)
-1. Restart the Arduino IDE. Examples from this library should be available in the File > Examples > VMSRobot3 menu.
+=== Installing Using Git
+. Go to the Arduino *libraries/* directory.
+. Clone this repository into that directory. (Will normally be a subdirectory called *VMSRobot3*, but you can use a different name, if you prefer.)
+. Restart the Arduino IDE. Examples from this library should be available in the File > Examples > VMSRobot3 menu.
 
-## Installing from ZIP
-1. There are no releases yet. For now, use the *Download ZIP* button and unpack that ZIP file into the Arduino *libraries/* directory. That will create a subdirectory called *VMSRobot3-master*.
-1. Rename that directory to *VMSRobot3*.
-1. Restart the Arduino IDE. Examples from this library should be available in the File > Examples > VMSRobot3 menu.
+=== Installing from ZIP
+. There are no releases yet. For now, use the *Download ZIP* button and unpack that ZIP file into the Arduino *libraries/* directory. That will create a subdirectory called *VMSRobot3-master*.
+. Rename that directory to *VMSRobot3*.
+. Restart the Arduino IDE. Examples from this library should be available in the File > Examples > VMSRobot3 menu.
 
-# The Robot Hardware
-[VMSRobot3 Parts List and Assembly Instructions](https://docs.google.com/document/d/1aMgGn_GMRXm6yo6lkSCQl6jxoEXO4kdBOoNrrVF_mG0/edit?usp=sharing)
+=== The Robot Hardware
+link:https://docs.google.com/document/d/1aMgGn_GMRXm6yo6lkSCQl6jxoEXO4kdBOoNrrVF_mG0/edit?usp=sharing[VMSRobot3 Parts List and Assembly Instructions]
 
-[Laser cutting template](https://drive.google.com/file/d/0B1_iFljgq8uCeUViWE9STkExa00/view?usp=sharing) - The cut lines are in yellow and are hard to see, but that works best with the *raster then vector* etch/cut mode in the laser cutter I'm using. You may want to darken the lines in Gimp or Photoshop, and perhaps remove the VMS logo. The original is in OmniGraffle, available upon request.
+link:https://drive.google.com/file/d/0B1_iFljgq8uCeUViWE9STkExa00/view?usp=sharing[Laser cutting template] - The cut lines are in yellow and are hard to see, but that works best with the *raster then vector* etch/cut mode in the laser cutter I'm using. You may want to darken the lines in Gimp or Photoshop, and perhaps remove the VMS logo. The original is in OmniGraffle, available upon request.
 
-# License
+== Example Programs
+
+Load any of these into the Arduino IDE from the Arduino menu File >
+Examples > VMSRobot3.
+
+|===
+| Name | Purpose
+
+| AssemblyTest | Tests the robot assembly, wiring, and parts, as detailed in the assembly instructions
+| DriveForward | Drives forward 5 seconds and stops
+| FollowEdge | Tries to drive around the edge of a table
+| AvoidDanger | Tries to avoid hitting anything and running off the edge of the table.
+| Wander | Tries to avoid hitting obstacles by panning the IR sensor back and forth while driving around
+| FollowWall | Tries to follow a wall on the right
+| FindTarget | Pans the IR sensor left and right until a target is found
+| ShowDistance | Shows the IR distance sensor values
+| ShowScene | Shows the scene in front of the robot whenever S1 is pressed
+| FollowObject | Drives around trying to find an object with the IR sensor; follows the left edge of the object
+| PushObject | Tries to find an object and push it off the table, while not falling off the table
+| KeyboardControl | Allows remote control while tethered to a laptop by using the keyboard to control the motors
+| RemoteControl | Allows remote control from an iPhone or iPad
+|===
+
+== License
 All files copyright 2015 by Mark Rose
 
 Licensed under the Apache License, Version 2.0 (the "License");
