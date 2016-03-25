@@ -1,0 +1,41 @@
+= Analog and Digital Reading
+
+The Arduino board has many pins which you can connect to external devices. The green pins on our board are the _digital pins_, numbered from 0 to 13. (On some boards, like the one we are using, you can also use digital pins 14–16.) Several of the blue pins are _analog pins_, labeled from A0 to A7.
+
+== Digital Reads
+
+All the pins can be read _digitally_. That is, the voltage applied to the pin by a sensor is detected. If it is above about +3V, the value is read as a value of `HIGH` (which actually equals 1). If is is less than about +2V, the value is read as `LOW` (which equals 0). In between, the pin could read either way.
+
+To read a pin digitally, use the Arduino function `digitalRead()`. For example, to read pin A2 digitally, use:
+
+    int value = digitalRead(A2);
+
+On our robot, this is a `HIGH` value (1) unless the left edge detector senses an edge, in which case it changes to `LOW` (0). You can use that to do different actions if you see an edge:
+
+    int noLeftEdge = digitalRead(A2);
+    if (!noLeftEdge) {
+      // We detected an edge
+      ...do something...
+    }
+
+The two edge detecting sensors are on analog pins A2 and A3. (We could have used digital pins, of course, it doesn't make any difference.)
+
+=== Putting Pins Into Digital Mode
+
+To read pins digitally, you have to tell Arduino in the `setup()` function:
+
+    void setup() {
+        pinMode(A2, INPUT);
+    }
+
+You can also use the value `INPUT_PULLUP`. That connects an internal 10KOhm resistor as a _pull-up_. Some sensors require a pull-up resistor. Our edge detectors do not, however.
+
+== Analog Reads
+
+The green pins labeled A0 through A7 can be read as an _analog_ value. That means you get a number back that reflects the actual voltage. To read the analog voltage on a pin, use `analogRead()`. For example, to read pin A4:
+
+    int value = analogRead(A4);
+
+The value returned will be from 0 (=0V) to 1023 (=+5V). On our robot, the IR distance sensor connected to pin A4. The value of that sensor varies with distance. The higher the value the closer an object is.
+
+You do not need to use `pinMode()` to read a pin using `analogRead()`, but you can only read the analog pins A0 to A7.
