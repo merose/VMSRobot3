@@ -42,10 +42,13 @@ Examples > VMSRobot3.
 | PushObject | Tries to find an object and push it off the table, while not falling off the table
 | KeyboardControl | Allows remote control while tethered to a laptop by using the keyboard to control the motors
 | RemoteControl | Allows remote control from an iPhone or iPad
+| ShowEncoders | Shows the wheel encoder values
+| DriveStraight | Uses the wheel encoders to drive straight ahead
+| Waypoints | Drives between (x,y) waypoints
 |===
 
 == License
-All files copyright 2015 by Mark Rose
+All files copyright 2015-2016 by Mark Rose
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

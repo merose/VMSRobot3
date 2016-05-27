@@ -1,0 +1,23 @@
+= Care and Feeding of Your Robot
+
+== For More Information
+
+The complete source code for the examples and lessons is in my GitHub repository: https://github.com/merose/VMSRobot3/
+
+You can always reach me at markrose@acm.org with any questions about your robot.
+
+== Maintenance
+
+There are a few things that can require maintenance.
+
+* Batteries -- If your robot starts behaving strangely after a while, the batteries may be low. Try a fresh set. Also, you can switch to rechargeable batteries, if you like, but the robot will drive a little slower because of the lower voltage (7.2V vs. 9V).
+
+* Loose screws -- Next time I may switch to plastic screws, which don't tend to come loose. For now, you may need to tighten screws occasionally. Or add lock-washers to keep the screws from coming loose.
+
+* Loose wiring -- Since the wiring is exposed, it can snag on something and come loose. The wiring instructions are in the lessons, or email me.
+
+== Troubleshooting
+
+Robot does not turn on:: If it works when plugged in to your computer, but doesn't turn on with its switch when not using the USB cable, then it's likely the batteries are dead. If that doesn't work, check the screw terminals with the red and black battery leads.
+
+Program won't upload to robot:: Check that the board setting is Arduino Uno and that the port setting is set to your Arduino Uno as well.
