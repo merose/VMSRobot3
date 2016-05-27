@@ -1,0 +1,24 @@
+= Installing the Wheel Encoders
+:imagesdir: ./images
+
+This lesson shows you how to add _wheel encoders_ to your robot. Wheel encoders allow you to determine how far you have traveled, in order to drive straight, follow waypoints, or turn a specific angle.
+
+The limitations of our encoders is that they only record travel in one direction. It's easiest if you never turn the wheels backwards. If you want to change direction, it's best to stop, wait until the wheels are idle, then reverse one or both motors, accomodating the motor direction when calculating the new robot pose.
+
+== Encoder Wiring
+
+The encoders have the most complex wiring we have seen, since each has four leads, two for the built-in LED, and two for the built-in phototransistor. Both the LED and the phototransistor can only be wired in one direction.
+
+image:encoder-combined-diagram_schem.png[Combined Encoder Wiring]
+
+== Testing the Encoders
+
+Use the example program `ShowEncoders` to display the encoder values from the left and right wheels. Make sure the encoders read 100 or less when over a white stripe, and about 500 or more when over a black stripe.
+
+== Driving Straight
+
+Load the example `DriveStraight`. This program uses a _proportional controller_. The constant `Kp` is currently zero. Increase the value until the robot drives relatively straight. You will probably need a value of 10 or more. What happens if you use an extremely high value, like 50? What happens if you use a really low value, like 2?
+
+== Following Waypoints
+
+The `Waypoints` example allows you to drive to particular X and Y positions on the floor, measured in meters. The robot starts at a position of (0,0) and assumes it is facing down the increasing X axis. The array `waypoints` holds the points to drive toward. The default values cause the robot to drive in a 1 meter square. Can you change the waypoints to drive in a triangle or some other shape? How would you approximate a circle?

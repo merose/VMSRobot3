@@ -1,0 +1,73 @@
+= Connecting to External Components
+:imagesdir: ./images
+
+== Connecting an External LED
+
+You can also control an LED placed on the breadboard. There is a little more work to do, however, because you cannot put power through an LED without some additional resistance or you'll burn it out.
+
+. Peel the backing off the sticky tape on the back of the breadboard, and stick it on your robot to the right of the Romeo board.
+. Load the "Blink" example again. (File > Examples > 01.Basic > Blink) Upload it to your robot and make sure the on-board LED blinks on and off, once per second.
+
+. Turn off the Arduino power switch and disconnect it from your computer. Never make connections while the power is connected. You may be able to damage the Arduino if you were to make connections while the power is on.
+Here are some diagrams of how we are going to connect the LED to the Arduino. The diagram on the left shows the Arduino, the breadboard, the LED and a 330 Ohm resistor, and the wires required to connect the power and signal to the Arduino. The diagram on the right is called a schematic diagram. It shows symbols for the computer, the LED, and the resistor instead of pictures of them. +
+image:external-led_bb.png[External LED Wiring, width=615] +
+image:external-led_schem.png[External LED Schematic, width=351]
+
+. Connect an LED across two pin rows. Notice that one lead of the LED is longer than the other. The longer lead is the positive side that you will connect to pin D13. The shorter lead will connect to the resistor and then to ground.
+
+. Connect a 330 Ohm resister from the minus side of the LED to an adjacent pin row.
+
+. Tear off a pair of wires that have female connectors on one end and male on the other. Connect pin 13 to the plus side of the LED, and GND to the resistor.
+
+. Turn on the robot power. Both the LED on the Arduino board and the external LED should blink.
+
+. Turn off the robot power.
+
+=== Other Things the Arduino Can Do
+
+* Read digital inputs
+* Write analog outputs (voltage levels between 0V and +5V)
+* Read analog inputs (voltages between 0V and +5V are converted to numbers between 0 and 1023)
+* Read digital pulses and give the pulse duration, in microseconds
+* Delay a number of microseconds
+* Control servo motors
+* Print text to the computer 
+
+Programs for the Arduino can also make decisions and iterate actions, and read and write variables. They can also do mathematical calculations involving integers or other numbers.
+
+You can look at the reference information on all Arduino functions on the Arduino web site under the Reference tab.
+
+=== Exercises
+
+Digital pins 3, 5, 6, 9, 10, and 11 have a small indicator next to them that indicates they support pulse width modulation (PWM). This allows sending intermittent pulses of +5V instead of continuous +5V (HIGH). You can send these pulses using the `analogWrite` function.
+
+. Change the wiring to the external LED to use pin 10 by moving the wire and changing 13 to 11 in the sketch. What happens when you replace the `digitalWrite(10,HIGH)` with `analogWrite(10,100)`? Try other values between 0 and 255.
+. Can you write a program to light the LED from bright to dim to off, repeatedly, at one second intervals?
+
+== Reading an External Switch
+
+. Connect a switch on the breadboard to pin 2 on the Arduino by following these diagrams: +
+image:switch_bb.png[External Switch Wiring, width=615] +
+image:switch_schem.png[External Switch Schematic, width=300]
+
+. Load the example program File > Examples > 02.Digital > DigitalInputPullup.
+
+. Change the baud rate in `Serial.begin(9600)` from 9600 to 115200, as we have used in other sketches.
+
+. Upload the program to the Arduino, and open the serial monitor. You should see "1" printed repeatedly.
+
+. Press the switch. The output should change to "0" when the switch is pressed.
+
+== Playing a Tune
+
+. Connect a piezo buzzer to pin 8 on the Arduino by following these diagrams: +
+image:buzzer_bb.png[Buzzer Wiring, width=723] +
+image:buzzer_schem.png[Buzzer Schematic, width=286]
+
+. Load the example program File > Examples > 02.Digital > toneMelody.
+
+. Upload the program to the Arduino. Your robot should play a tune.
+
+. Get the PlayTune example from your instructor and upload that program to your Arduino.
+
+. Modify the example to play a different tune.

@@ -1,0 +1,10 @@
+= Schematic Symbols
+:imagesdir: ./images
+
+== Basic Symbols Used in a Schematic
+
+image:schematic-symbols.jpeg[Basic schematic symbols]
+
+== Resistor Color Code
+
+image:resistorchart.jpg[Resistor color codes]

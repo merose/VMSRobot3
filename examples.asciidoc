@@ -37,3 +37,19 @@ See if you can modify these example programs to solve the challenges given.
 == Remote Control
 
 The RemoteControl example requires the use of the GoBLE app which can be installed for free on an iPhone or iPad from the Apple Store. You have to press the search button to find your robot, then select it to connect. After that you can use the virtual joystick to drive the robot around.
+
+== Examples Using Wheel Encoders
+
+The following examples assume you have installed the optional wheel encoders using the OP742WZ optoelectronic component.
+
+=== ShowEncoders
+
+Shows the analog encoder values, assuming the encoders are wired to analog inputs `A0` and `A1`.
+
+=== DriveStraight
+
+Attempts to drive straight ahead based on keeping the encoder ticks from the left and right wheels approximately equal. This sketch uses a _proportional controller_, which requires you to adjust the proportional constant `Kp` to an appropriate value. Zero means no proportional control, just use constant speed (in which case you may not go straight). Increase the value to have stronger control, turning more quickly to a straight course. You will probably find that a value of a little over 10 is good.
+
+=== Waypoints
+
+This program travels to waypoints defined by X and Y coordinates. The default waypoints are the corners of a 1 meter square. Change the waypoints to a path you want the robot to follow.

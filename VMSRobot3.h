@@ -7,6 +7,9 @@
 
 #include <arduino.h>
 #include "GoBLE.h"
+#include "RobotPose.h"
+#include "AnalogScanner.h"
+#include "AnalogEncoder.h"
 
 const int ONBOARD_SWITCH_PIN = A7;
 const int ONBOARD_LED_PIN = 13;
